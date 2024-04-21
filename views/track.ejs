@@ -113,8 +113,8 @@
                                         <%= locals.amountsArray[i] %>
                                     </span>
                                     <br>
-                                    <% const tp=new Date(locals.DateArray[i]); %>
-                                        <% if(locals.BenArray) { %>
+                                    <% if(locals.BenArray) { %>
+                                        <% const tp=new Date(locals.DateArray[i]); %>
                                             <span class="date-time">
                                                 <%= locals.BenArray[i] %>,
                                                     <%- tp.toDateString().slice(0, 3) %>,<%- tp.toDateString().slice(3,
