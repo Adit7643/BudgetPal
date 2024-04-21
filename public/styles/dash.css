@@ -1,0 +1,208 @@
+.nav-sec {
+    background: #5F58B6;
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    margin: 0;
+}
+
+.user_name {
+    color: #FFF;
+    font-family: Mohave;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 20px 45px 40px 10px;
+}
+
+.avatar {
+    margin: 30px 0px 30px 40px;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+}
+
+.nav-opt {
+    color: #FFF;
+    font-family: Mohave;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background: transparent;
+    border: transparent;
+}
+
+.s1-dash {
+    padding: 0;
+    background: #454372;
+}
+
+.padder {
+    padding: 10px 0px 10px 24px;
+}
+
+.pad {
+    padding: 0;
+}
+
+.mar {
+    margin: 0;
+}
+
+.hov {
+    color: #000;
+    font-family: Mohave;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border: 1px solid #5F58B6;
+}
+
+.hov:hover {
+    background-color: #5F58B6;
+    color: #FFF;
+    font-family: Mohave;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+.p11 {
+    background: #F4F6F5;
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    
+}
+
+.bal {
+    margin: 1.5rem;
+    font-size: 1.2rem;
+    color: #454372;
+}
+
+.p12 {
+
+    background: #f4f6f5ea;
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    height: 270px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.p13 {
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.p21 {
+    height: 300px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+
+}
+
+.transac {
+    height: 80px;
+    margin: 5px 4px 5px 4px;
+}
+
+.mon {
+    margin-left: 10px;
+    margin-top: 1.5rem;
+    font-family: Mohave;
+    font-size: 25px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.date-time {
+    color: #f4f6f5ea;
+    font-family: Mohave;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 10px;
+    text-align: right;
+}
+
+.rec {
+    overflow: hidden;
+}
+
+.scroll {
+    overflow: hidden;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 0;
+}
+
+.scroll:hover {
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.p22 {
+    margin-bottom: 10px;
+}
+
+.over {
+    overflow: hidden;
+}
+
+.stick {
+    position: sticky;
+    bottom: 0;
+}
+
+.log-img {
+    height: 80px;
+    width: 100px;
+}
+
+.s1::-webkit-scrollbar {
+    width: 0;
+}
+
+.chart {
+    height: 300px;
+    margin: 0px;
+    background: #f4f6f5ea;
+    color: #454372;
+}
+
+.low {
+    height: 185px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-left: .2rem;
+    margin-right: .2rem;
+    background: #f4f6f5ea;
+}
+.ofcan{
+    margin-left: 2rem;
+}
+.offcanvas-start{
+    width:20rem ! important;
+}

@@ -1,0 +1,94 @@
+.btn-all{
+    border-radius: 10px;
+    background: #0833A2;
+}
+.plate{
+    color: #FFCDEA ;
+    background: linear-gradient(90deg, #7AA2E3 0%, #2F2963 98.4%);
+    padding: .5rem .5rem .5rem .5rem;
+    height: 9rem;
+    border-radius: 20px;
+}
+.plate-card{
+    color: #FFCDEA ;
+    background: linear-gradient(90deg, #7AA2E3 0%, #2F2963 98.4%);
+    padding: .5rem .5rem .5rem .5rem;
+    height: 9rem;
+    border-radius: 15px;
+}
+
+.card-heading{
+    margin-top:.7rem;
+    margin-right:.2rem;
+    margin-left: .4rem;
+    font-size: 1rem;
+    color: #454372;
+}
+.btn-c{
+    background-color: #2F2963;
+    border: 1px solid #1f1b42;
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color:#F1C0AB;
+}
+.btn-c:hover{
+    background: #f4f6f5ea;
+    font-family: "Jersey 20", sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+    color:#2F2963;
+}
+.s1{
+    padding: 0;
+}
+.lout{
+    margin-top: 6rem;
+    position: fixed;
+    z-index: 3;
+    bottom:0;
+}
+.pro_img{
+    height: 10rem;
+    width: 10rem;
+}
+.dis-sec{
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding-bottom: 48%;
+}
+.card-row{
+    padding: 0;
+}
+.form-track{
+    margin-bottom:22%;
+}
+.form-trac{
+    padding-bottom:3%;
+}
+.mon-card{
+    margin-left: 10px;
+    margin-top: 1.5rem;
+    font-family: Mohave;
+    font-size: 25px;
+    font-weight: 400;
+    font-style: normal;
+}
+.chatpad {
+    padding-bottom: 38%;
+}
+p{
+    margin-left: 1rem;
+}
+#chat-area{
+    background: #2f296371;
+}
+.lup{
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+.text-area{
+    background: rgba(34, 33, 33, 0.747);
+    color: #fff;
+}
