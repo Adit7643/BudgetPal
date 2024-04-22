@@ -95,8 +95,8 @@
                         <form method="post" action="/upload" enctype="multipart/form-data">
                             <% if(locals.ImageData){ %>
                             <div class="row fl-upload">
-                            <div class="col-2"><input class="inp form-control cr-acc" type="file" name="profile_image"  required></div>
-                            <div class="col-2"><input class="inp form-control cr-acc" type="submit" value="Update"></div>
+                            <div class="col-2"><input class="inp form-control cr-acc .btn btn-outline hov" type="file" name="profile_image"  required></div>
+                            <div class="col-2"><input class="inp form-control cr-acc .btn btn-outline hov" type="submit" value="Update"></div>
                             </div>
                             <% }else{ %>
                                 <div class="row fl-upload">
@@ -119,7 +119,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <label class="form-check-label al-acc dt" for="date">Date Of Birth:</label>
+                                        <label class="form-check-label al-acc dt bl" for="date">Date Of Birth:</label>
                                     </div>
                                     <div class="col-6">
                                         <input type="date"  class="inp form-control dob" id="date" name="DOB" required>
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <input type="submit" class="form-control inp cr-acc" value="Edit Profile" required>
+                                        <input type="submit" class="form-control inp cr-acc .btn btn-outline hov" value="Edit Profile" required>
                                     </div>
                                 </div>
                             </form>

@@ -1,8 +1,7 @@
 .nav-sec {
-    background: #5F58B6;
+    background: #10316B;
     margin: 0;
-    padding: 0;
-
+    padding: 0 0 150px 0;
 }
 
 body {
@@ -39,7 +38,9 @@ body {
 
 .s1-dash {
     padding: 0;
-    background: #454372;
+    background: url(https://wallpaperaccess.com/full/732232.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .padder {
@@ -48,6 +49,7 @@ body {
 
 .pad {
     padding: 0;
+    
 }
 
 .mar {
@@ -55,24 +57,25 @@ body {
 }
 
 .hov {
-    color: #000;
+    color: #F2F7FF;
     font-family: Mohave;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     border: 1px solid #5F58B6;
+    background: #10316B;
 }
 
 .hov:hover {
-    background-color: #5F58B6;
-    color: #FFF;
+    background-color: #F4F6F5;
+    color: #000;
     font-family: Mohave;
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-
+    border: 1px solid #10316B;
 }
 
 .p11 {
@@ -82,10 +85,10 @@ body {
     font-style: normal;
     height: 100px;
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
     margin-left: 20px;
     margin-right: 20px;
-    
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.571);
 }
 
 .bal {
@@ -102,15 +105,17 @@ body {
     font-style: normal;
     height: 270px;
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.571);
 }
 
 .p13 {
-    margin-top: 10px;
+    margin-top: 40px;
     margin-left: 20px;
     margin-right: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.571);
 }
 
 .p21 {
@@ -118,6 +123,7 @@ body {
     margin-bottom: 10px;
     margin-top: 10px;
     margin-right: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.571);
 
 }
 
@@ -169,6 +175,9 @@ body {
 
 .over {
     overflow: hidden;
+    background: url(https://wallpaperaccess.com/full/732232.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .stick {
@@ -199,6 +208,7 @@ body {
     margin-left: .2rem;
     margin-right: .2rem;
     background: #f4f6f5ea;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.571);
 }
 .ofcan{
     margin-left: 2rem;

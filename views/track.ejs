@@ -68,44 +68,63 @@
                 </div>
             </div>
             <div class="col-9 pad over">
-                <nav class="navbar bg-body-tertiary">
-                    <div class="container-fluid row">
-                        <div class="col-8">
-                            <div class="w-100 container-fluid">
-                                <div class="row">
-                                    <ul class="navbar-list">
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link" onclick="trans()">Transaction</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link" onclick="bill()">Bills and Payments</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link" onclick="inc()">Income</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" class="nav-link" onclick="card()">Cards</a>
-                                        </li>
+                <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownTransaction" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Transactions
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownTransaction">
+                                        <li><a class="dropdown-item" href="#" onclick=add_trans()>Add</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick=show_transaction()>Show</a></li>
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <form class="d-flex search-btn " role="search">
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBills" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Bills and Payments
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownBills">
+                                        <li><a class="dropdown-item" href="#" onclick=add_bill()>Add</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick=show_bill()>Show</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownIncome" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Income
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownIncome">
+                                        <li><a class="dropdown-item" href="#" onclick=add_inc()>Add</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick=show_inc()>Show</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCards" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Cards
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownCards">
+                                        <li><a class="dropdown-item" href="#" onclick=add_card()>Add</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick=show_card()>Show</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <form class="d-flex">
                                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline hov" type="submit">Search</button>
+                                <button class="btn hov" type="submit">Search</button>
                             </form>
                         </div>
                     </div>
                 </nav>
-
 
                 <div class="w-100 container-fluid">
                     <div class="row">
                         <div id="addshow"></div>
                     </div>
                 </div>
-
 
                 <div class="w-100 show_form">
                     <div class="row">
@@ -144,32 +163,37 @@
         function add_trans() {
             const ct = document.getElementsByClassName('show_form')[0];
             ct.innerHTML = `<div class="container-fluid">
-    <div class="row justify-content-left form-track">
-        <div class="col-md-6">
+    <div class="row justify-content form-track">
+        <div class="col-md-6 form-align">
                 <div class="card-body">
-                    <h5 class="card-title">Add Transaction</h5>
+                    <h5 class="card-title Form-head">Add Transaction</h5>
                     <form action="/add_transaction" method="post">
                         <div class="form-group">
-                            <label for="beneficiary_or_payee_name">Beneficiary/Payee Name:</label>
+                            <label for="beneficiary_or_payee_name" class="form-check-label al-acc dt bl">Beneficiary or Payee Name:</label>
                             <input type="text" id="beneficiary_or_payee_name" name="beneficiary_or_payee_name" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="amount">Amount:</label>
+                            <label for="amount" class="form-check-label al-acc dt bl ">Amount:</label>
                             <input type="number" id="amount" name="amount" class="form-control" min="0" step="0.01" required>
                         </div>
+                        <div class="row">
+                        <div class="col-md-6">
                         <div class="form-group">
-                            <label for="category">Category:</label>
+                            <label for="category" class="form-check-label al-acc dt bl" >Category:</label>
                             <select id="category" name="category" class="form-control" required>
                                 <option value="received">Received</option>
                                 <option value="paid">Paid</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                        <label for="t_date">Transaction Date:</label>
-                        <input type="date"  name="t_date" class="form-control"  required>
                         </div>
-                    
-                        <button type="submit" class="btn btn-primary btn-block">Add Transaction</button>
+                        <div class="col-md-6">
+                        <div class="form-group">
+                        <label for="t_date" class=" form-check-label al-acc dt bl ">Transaction Date:</label>
+                        <input type="date"  name="t_date" class="form-control inp"  required>
+                        </div> 
+                        </div> 
+                        </div>
+                        <button type="submit" class="btn btn-outline hov cen ">Add Transaction</button>
                     </form>
                 </div>
         
@@ -182,24 +206,25 @@
             const ct = document.getElementsByClassName('show_form')[0];
             ct.innerHTML = `<div class="container">
 <div class="row justify-content form-track">
-<div class = "col-1"></div>
-<div class="col-md-6">
+<div class="col-md-6 form-align">
         <div class="card-body ">
-            <h5 class="card-title">Add Bills and Payments</h5>
+            <h5 class="card-title Form-head ">Add Bills and Payments</h5>
             <form action="/add_bill" method="post">
                 <div class="form-group">
-                    <label for="beneficiary_name">Beneficiary Name:</label>
-                    <input type="text" id="beneficiary_name" name="beneficiary_name" class="form-control" required>
+                    <label for="beneficiary_name" class="form-check-label al-acc dt bl">Beneficiary Name:</label>
+                    <input type="text" id="beneficiary_name" name="beneficiary_name" class="form-control inp " required>
+                </div>
+                <div class="row">
+                <div class="form-group">
+                    <label for="transaction_date" class="form-check-label al-acc dt bl">Transaction Date:</label>
+                    <input type="date" id="transaction_date" name="transaction_date" class="form-control inp" required>
                 </div>
                 <div class="form-group">
-                    <label for="transaction_date">Transaction Date:</label>
-                    <input type="date" id="transaction_date" name="transaction_date" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="amount">Amount:</label>
+                    <label for="amount" class="form-check-label al-acc dt bl">Amount:</label>
                     <input type="number" id="amount" name="amount" class="form-control" min="0" step="0.01" required>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Add Bill or Payment</button>
+                </div>
+                <button type="submit" class="btn btn-outline hov cen">Add Bill or Payment</button>
             </form>
         </div>
 </div>
@@ -212,24 +237,23 @@
             const ct = document.getElementsByClassName('show_form')[0];
             ct.innerHTML = `<div class="container">
 <div class="row justify-content form-track">
-<div class=col-4></div>
-<div class="col-md-6">
+<div class="col-md-6 form-align">
         <div class="card-body">
-            <h5 class="card-title">Add Income</h5>
+            <h5 class="card-title Form-head">Add Income</h5>
             <form action="/add_income" method="post">
                 <div class="form-group">
-                    <label for="payee_name">Payee Name:</label>
+                    <label for="payee_name" class="form-check-label al-acc dt bl">Payee Name:</label>
                     <input type="text" id="payee_name" name="payee_name" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="income_date">Income Date:</label>
+                    <label for="income_date" class="form-check-label al-acc dt bl">Income Date:</label>
                     <input type="date" id="income_date" name="income_date" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="amount">Amount:</label>
+                    <label for="amount" class="form-check-label al-acc dt bl">Amount:</label>
                     <input type="number" id="amount" name="amount" class="form-control" min="0" step="0.01" required>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Add Income</button>
+                <button type="submit" class="btn btn-outline hov cen">Add Income</button>
             </form>
         </div>
 </div>
@@ -241,29 +265,34 @@
         function add_card() {
             const ct = document.getElementsByClassName('show_form')[0];
             ct.innerHTML = `<div class="container">
-<div class="row justify-content form-track">
-    <div class="col-6"></div>
-    <div class="col-md-6">
+<div class="row justify-content form-track">    
+    <div class="col-md-6 form-align">
             <div class="card-body">
-                <h5 class="card-title">Add Saved Cards</h5>
+                <h5 class="card-title Form-head">Add Card</h5>
                 <form action="/add_card" method="post">
                     <div class="form-group">
-                        <label for="card_number">Card Number:</label>
+                        <label for="card_number" class="form-check-label al-acc dt bl">Card Number:</label>
                         <input type="text" id="card_number" name="card_number" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="bank">Bank:</label>
+                        <label for="bank" class="form-check-label al-acc dt bl">Bank:</label>
                         <input type="text" id="bank" name="bank" class="form-control" required>
                     </div>
+                    <div class="row">
+                    <div class="col-md-6">
                     <div class="form-group">
-                        <label for="expiry_month">Expiry Month:</label>
+                        <label for="expiry_month" class="form-check-label al-acc dt bl">Expiry Month:</label>
                         <input type="number" id="expiry_month" name="expiry_month" class="form-control" min="1" max="12" required>
                     </div>
+                    </div>
+                    <div class="col-md-6">
                     <div class="form-group">
-                        <label for="expiry_year">Expiry Year:</label>
+                        <label for="expiry_year" class="form-check-label al-acc dt bl">Expiry Year:</label>
                         <input type="number" id="expiry_year" name="expiry_year" class="form-control" min="2022" required>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Add Card</button>
+                    </div>
+                    <div>
+                    <button type="submit" class="btn btn-outline hov cen">Add Card</button>
                 </form>
             </div>
     </div>
@@ -354,7 +383,7 @@
             const st = document.getElementsByClassName('show_form')[0];
             st.innerHTML = `<div class="row"><% if (locals.card_details) { %>
                                                 <% for (let i = 0; i < locals.card_details.length; i++) { %>
-                                                    <span class="transac card col-4 plate-card">
+                                                    <span class=" card col-4 plate-card">
                                                         <span class="mon-card">
                                                             <%= locals.card_details[i] %>
                                                         </span>
