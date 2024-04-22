@@ -70,70 +70,71 @@
             <div class="col-9 pad over">
                 <nav class="navbar bg-body-tertiary">
                     <div class="container-fluid row">
-                        <div class="col-8"></div>
-
-                        <form class="d-flex search-btn col-4" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline hov" type="submit">Search</button>
-                        </form>
+                        <div class="col-8">
+                            <div class="w-100 container-fluid">
+                                <div class="row">
+                                    <ul class="navbar-list">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link" onclick="trans()">Transaction</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link" onclick="bill()">Bills and Payments</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link" onclick="inc()">Income</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link" onclick="card()">Cards</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <form class="d-flex search-btn " role="search">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline hov" type="submit">Search</button>
+                            </form>
+                        </div>
                     </div>
                 </nav>
-                <div class="dis-sec">
-                    <div class="w-100 container-fluid">
-                        <div class="row">
 
-                            <div class="col-md-2 card-row">
-                                <button type="button" class="btn btn-c " onclick=trans()>Transaction</button>
-                            </div>
-                            <div class="col-md-3 card-row">
-                                <button type="button" class="btn-c btn " onclick=bill()>Bills and
-                                    Payments</button>
-                            </div>
-                            <div class="col-md-2 card-row">
-                                <button type="button" class="btn btn-c " onclick=inc()>
-                                    Income</button>
-                            </div>
-                            <div class="col-md-2 card-row">
-                                <button type="button" class="btn-c btn " onclick=card()>Cards</button>
-                            </div>
-                            <div class="col-md-4"></div>
-                        </div>
+
+                <div class="w-100 container-fluid">
+                    <div class="row">
+                        <div id="addshow"></div>
                     </div>
-                    <div class="w-100 container-fluid">
-                        <div class="row">
-                            <div id="addshow"></div>
+                </div>
 
-                        </div>
-                    </div>
-                    <div class="w-100 show_form">
-                        <div class="row">
-                            <% if(locals.amountsArray) { for( var i=0 ; i < amountsArray.length ; i++ ) { %>
-                                <span class="card col-3 plate ">
-                                    <span class="mon">
-                                        <%= locals.amountsArray[i] %>
-                                    </span>
-                                    <br>
-                                    <% if(locals.BenArray) { %>
-                                        <% const tp=new Date(locals.DateArray[i]); %>
-                                            <span class="date-time">
-                                                <%= locals.BenArray[i] %>,
-                                                    <%- tp.toDateString().slice(0, 3) %>,<%- tp.toDateString().slice(3,
-                                                            15) %>
-                                            </span>
-                                            <% }else { %>
-                                                <span class="date-time">Error loading details....</span>
-                                                <% } %>
 
+                <div class="w-100 show_form">
+                    <div class="row">
+                        <% if(locals.amountsArray) { for( var i=0 ; i < amountsArray.length ; i++ ) { %>
+                            <span class="card col-3 plate ">
+                                <span class="mon">
+                                    <%= locals.amountsArray[i] %>
+                                </span>
+                                <br>
+                                <% if(locals.BenArray) { %>
+                                    <% const tp=new Date(locals.DateArray[i]); %>
+                                        <span class="date-time">
+                                            <%= locals.BenArray[i] %>,
+                                                <%- tp.toDateString().slice(0, 3) %>,<%- tp.toDateString().slice(3, 15)
+                                                        %>
+                                        </span>
+                                        <% }else { %>
+                                            <span class="date-time">Error loading details....</span>
+                                            <% } %>
+
+                            </span>
+
+                            <% } } else { %>
+                                <span class="transac card col">
+                                    <h6 class="mon">Sorry...</h6>
+                                    <span class="date-time">Something might be wrong , Try relogin</span>
                                 </span>
 
-                                <% } } else { %>
-                                    <span class="transac card col">
-                                        <h6 class="mon">Sorry...</h6>
-                                        <span class="date-time">Something might be wrong , Try relogin</span>
-                                    </span>
-
-                                    <% } %>
-                        </div>
+                                <% } %>
                     </div>
                 </div>
             </div>

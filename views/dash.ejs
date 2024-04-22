@@ -71,9 +71,18 @@
             <div class="col-12 pad over">
                 <nav class="navbar bg-body-tertiary sticky-top">
                     <div class="container-fluid row">
-                        <div class="col-8"><img class="log-img" src="/images/logo.png" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasOptions" aria-controls="offcanvasOptions"></div>
-
+                        <div class="col-3"><span class="navbar-toggler-icon" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasOptions" aria-controls="offcanvasOptions"></span></div>
+                            <div class="col-md-5">
+                                <ul class="horizontal-list">
+                                    <li ><a href="/dash">Home</a></li>
+                                    <li><a href="/track">Expenses</a></li>
+                                    <li><a href="/profile">Profile</a></li>
+                                    <li><a href="/chat">Chat with others</a></li>
+                                    
+                                </ul>
+                                
+                            </div>
                         <form class="d-flex search-btn col-4">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline hov" type="submit">Search</button>
@@ -105,14 +114,14 @@
                                                 <br>
                                                 <% if(locals.BenArray) { %>
                                                     <% const tp=new Date(locals.DateArray[i]); %>
-                                            <span class="date-time">
-                                                <%= locals.BenArray[i] %>,
-                                                    <%- tp.toDateString().slice(0, 3) %>,<%- tp.toDateString().slice(3,
-                                                            15) %>
-                                            </span>
-                                            <% }else { %>
-                                                <span class="date-time">Error loading details....</span>
-                                                <% } %>
+                                                        <span class="date-time">
+                                                            <%= locals.BenArray[i] %>,
+                                                                <%- tp.toDateString().slice(0, 3) %>,<%-
+                                                                        tp.toDateString().slice(3, 15) %>
+                                                        </span>
+                                                        <% }else { %>
+                                                            <span class="date-time">Error loading details....</span>
+                                                            <% } %>
 
                                             </span>
 
@@ -233,53 +242,53 @@
                 </div>
             </div>
         </div>
-        <% const data = locals.amountsArray %>
+        <% const data=locals.amountsArray %>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <script>
-     const ctx = document.getElementById('doughnut');
 
-         new Chart(ctx, {
-             type: 'doughnut',
-             data: {
-                 labels: [
-                     "January", "February", "March", "April", "May", "June",
-                     "July", "August", "September", "October", "November", "December"
-                 ],
-                 datasets: [{
-                     label: 'Transaction Amount',
-                     data: [12000, 13000, 17000,27500, 20000, 15000,9000,17500,15400,25000,23400,13000],
-                     borderWidth: 1,
-                     backgroundColor: [
-                         'rgba(255, 99, 132)',
-                         'rgba(255, 159, 64)',
-                         'rgba(255, 205, 86)',
-                         'rgba(75, 192, 192)',
-                         'rgba(54, 162, 235)',
-                         'rgba(153, 102, 255)',
-                         'rgba(201, 203, 207)'
-                     ],
-                 }]
-             },
-         });
-         const ptx = document.getElementById('barchart');
-         new Chart(ptx, {
-             type: 'line',
-             data: {
-                 labels: [
-                     "January", "February", "March", "April", "May", "June",
-                     "July", "August", "September", "October", "November", "December"
-                 ],
-                 datasets: [{
-                     label: 'Transaction amount',
-                     data: [12000, 13000, 17000,27500, 20000, 15000,9000,17500,15400,25000,23400,13000],
-                     borderWidth: 2,
-                     borderColor: 'rgb(75, 192, 192)',
-                     tension: 0.5
-                 }]
-             },
-});
+    <script>
+        const ctx = document.getElementById('doughnut');
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: [
+                    "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ],
+                datasets: [{
+                    label: 'Transaction Amount',
+                    data: [12000, 13000, 17000, 27500, 20000, 15000, 9000, 17500, 15400, 25000, 23400, 13000],
+                    borderWidth: 1,
+                    backgroundColor: [
+                        'rgba(255, 99, 132)',
+                        'rgba(255, 159, 64)',
+                        'rgba(255, 205, 86)',
+                        'rgba(75, 192, 192)',
+                        'rgba(54, 162, 235)',
+                        'rgba(153, 102, 255)',
+                        'rgba(201, 203, 207)'
+                    ],
+                }]
+            },
+        });
+        const ptx = document.getElementById('barchart');
+        new Chart(ptx, {
+            type: 'line',
+            data: {
+                labels: [
+                    "January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"
+                ],
+                datasets: [{
+                    label: 'Transaction amount',
+                    data: [12000, 13000, 17000, 27500, 20000, 15000, 9000, 17500, 15400, 25000, 23400, 13000],
+                    borderWidth: 2,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.5
+                }]
+            },
+        });
     </script>
 </body>
 

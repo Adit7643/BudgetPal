@@ -7,14 +7,31 @@
     background: linear-gradient(90deg, #7AA2E3 0%, #2F2963 98.4%);
     padding: .5rem .5rem .5rem .5rem;
     height: 9rem;
-    border-radius: 20px;
+    box-shadow: 0 40px 50px rgba(49, 20, 180, 0.521);
+    border-radius: 10px;
+    transition: transform 0.3s ease;
 }
+.plate:hover {
+    transform: scale(1.05);
+  }
+  @media screen and (max-width: 600px) {
+    .plate {
+      width: calc(100% - 40px);
+    }
+    .avatar{
+        width: calc(100% - 40px); 
+    }
+    
+  }
 .plate-card{
     color: #FFCDEA ;
     background: linear-gradient(90deg, #7AA2E3 0%, #2F2963 98.4%);
     padding: .5rem .5rem .5rem .5rem;
     height: 9rem;
     border-radius: 15px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    margin: 5px;
 }
 
 .card-heading{
@@ -91,4 +108,62 @@ p{
 .text-area{
     background: rgba(34, 33, 33, 0.747);
     color: #fff;
+}
+.horizontal-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.horizontal-list li {
+    display: inline-block;
+    margin-right: 20px; /* Adjust spacing between list items */
+    border-bottom:2px solid transparent;
+    transition: transform 0.3s ease, border-bottom-color 0.3s ease;
+}
+.horizontal-list li:hover {
+    transform: scale(1.05);
+    border-bottom-color: #1f1b42;
+}
+
+.horizontal-list li:last-child {
+    margin-right: 0; /* Remove margin from the last list item */
+}
+ul{
+    margin-top: 0;
+    margin-bottom: 0rem;
+}
+.transparent{
+    background: transparent;
+    border: transparent;
+    cursor: pointer;
+}
+a, a:visited,:active{
+    color: #1f1b42;
+    font-family: Mohave;
+    text-decoration: none;
+   
+}
+a:hover {
+    transform: scale(1.5) ;
+}
+/* Style for navbar-list class */
+.navbar-list {
+    display: flex; /* Display list items horizontally */
+    justify-content: space-around; /* Align list items evenly */
+    padding: 0; /* Remove default padding */
+    list-style: none; /* Remove default list styles */
+}
+
+.nav-item {
+    margin: 0;
+}
+.nav-link {
+    text-decoration: none; /* Remove default underline */
+    color: #007bff; /* Blue text color */
+    transition: transform 0.3s ease; /* Transition effect for scaling */
+}
+
+/* Scale effect on hover */
+.nav-link:hover {
+    transform: scale(1.1); /* Scale up to 110% on hover */
 }
