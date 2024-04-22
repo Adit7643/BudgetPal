@@ -38,7 +38,7 @@ body {
 
 .s1-dash {
     padding: 0;
-    background: url(https://wallpaperaccess.com/full/732232.jpg);
+    background: url(/images/cover.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -175,7 +175,7 @@ body {
 
 .over {
     overflow: hidden;
-    background: url(https://wallpaperaccess.com/full/732232.jpg);
+    background: url(/images/cover.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
