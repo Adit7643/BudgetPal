@@ -98,7 +98,7 @@
                                     <% if(locals.Bal) { %>
                                         <span class="">$ <%= locals.Bal %></span>
                                         <% } else { %>
-                                            <span>$ .......</span>
+                                            <span>$ 0</span>
                                             <% } %>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                             <div class="w-100 p13">
                                 <form>
                                     <button class="btn btn-outline hov w-100" type="submit" formaction="/track"
-                                        formmethod="post">Add Transaction</button>
+                                        formmethod="post">Add Transactions</button>
                                     <button class="btn btn-outline hov w-100" type="submit" formaction="/track"
                                         formmethod="post">See Transactions</button>
                                 </form>
@@ -258,7 +258,7 @@
                 ],
                 datasets: [{
                     label: 'Transaction Amount',
-                    data: [12000, 13000, 17000, 27500, 20000, 15000, 9000, 17500, 15400, 25000, 23400, 13000],
+                    data: [2000, 3000, 7000, 7500, 2000, 5000, 9000, 7500, 5400, 5000, 3400, 3000],
                     borderWidth: 1,
                     backgroundColor: [
                         'rgba(255, 99, 132)',
@@ -282,7 +282,7 @@
                 ],
                 datasets: [{
                     label: 'Transaction amount',
-                    data: [12000, 13000, 17000, 27500, 20000, 15000, 9000, 17500, 15400, 25000, 23400, 13000],
+                    data: [2000, 3000, 7000, 7500, 2000, 5000, 9000, 7500, 5400, 5000, 3400, 3000],
                     borderWidth: 2,
                     borderColor: 'rgb(75, 192, 192)',
                     tension: 0.5

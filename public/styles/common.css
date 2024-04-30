@@ -183,6 +183,9 @@ a:hover {
     left: 200px;
     top:110px;
 }
+.options{
+    margin-bottom: 2rem;
+}
 @media screen and (max-width: 600px) {
     .form-align {
       width: calc(100% - 40px);

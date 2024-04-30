@@ -5,7 +5,7 @@ import session from 'express-session';
 import bodyParser from 'body-parser';
 import multer from 'multer';
 import path from 'path';
-import {Server} from 'socket.io';
+import { Server } from 'socket.io';
 import http from 'http';
 
 dotenv.config();
@@ -114,19 +114,19 @@ app.post("/login", async (req, res) => {
 
             req.session.table = fname + pass;
 
-            const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table+'transaction'}`);
+            const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table + 'transaction'}`);
 
-        const categoryArray = [];
-        const amountArray = [];
-        const benArray = [];
-        const dateArray = [];
+            const categoryArray = [];
+            const amountArray = [];
+            const benArray = [];
+            const dateArray = [];
 
-        TransactionData.rows.forEach(row => {
-            categoryArray.push(row.category);
-            amountArray.push(row.amount);
-            benArray.push(row.benpayname);
-            dateArray.push(row.transaction_date);
-        });
+            TransactionData.rows.forEach(row => {
+                categoryArray.push(row.category);
+                amountArray.push(row.amount);
+                benArray.push(row.benpayname);
+                dateArray.push(row.transaction_date);
+            });
             const arr = []
             if (categoryArray.length < 7) {
                 for (let i = categoryArray.length - 1; i >= 0; i--) {
@@ -183,7 +183,7 @@ app.post("/login", async (req, res) => {
                 ru.push(row.amount);
             });
             const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-            if(!result.rows[0].image){
+            if (!result.rows[0].image) {
                 res.render('dash.ejs', {
                     Name: req.session.name,
                     Gender: req.session.gender,
@@ -199,34 +199,34 @@ app.post("/login", async (req, res) => {
                     benf_name: benf,
                     transac: trans,
                     Amount: ru,
-                    BenArray:benArray,
-                    DateArray:dateArray,
+                    BenArray: benArray,
+                    DateArray: dateArray,
                 });
-            }else{
+            } else {
 
-            const imageData = result.rows[0].image;
-            const buffer = Buffer.from(imageData, "binary");
-            const dataURI = buffer.toString();
-            res.render('dash.ejs', {
-                Name: req.session.name,
-                Gender: req.session.gender,
-                Bal: total_bal,
-                amountsArray: arr,
-                trans: tran,
-                amnt: am,
-                payees: pay,
-                card_details: card,
-                Bank: bnk,
-                Expiry_mon: ex_month,
-                Expiry_year: ex_year,
-                benf_name: benf,
-                transac: trans,
-                Amount: ru,
-                ImageData: dataURI,
-                BenArray: benArray,     
-                DateArray:dateArray
-            });
-        }   
+                const imageData = result.rows[0].image;
+                const buffer = Buffer.from(imageData, "binary");
+                const dataURI = buffer.toString();
+                res.render('dash.ejs', {
+                    Name: req.session.name,
+                    Gender: req.session.gender,
+                    Bal: total_bal,
+                    amountsArray: arr,
+                    trans: tran,
+                    amnt: am,
+                    payees: pay,
+                    card_details: card,
+                    Bank: bnk,
+                    Expiry_mon: ex_month,
+                    Expiry_year: ex_year,
+                    benf_name: benf,
+                    transac: trans,
+                    Amount: ru,
+                    ImageData: dataURI,
+                    BenArray: benArray,
+                    DateArray: dateArray
+                });
+            }
         } else {
             res.render("login.ejs", {
                 error: "Invalid email or password!",
@@ -258,7 +258,7 @@ app.post('/profile', async (req, res) => {
             res.render('profile.ejs', {
                 Name: req.session.name,
                 Gender: req.session.gender,
-                First:userData.rows[0].fname,
+                First: userData.rows[0].fname,
                 Last: userData.rows[0].lname,
                 DOB: userData.rows[0].date_of_birth,
                 mail: userData.rows[0].email,
@@ -272,7 +272,7 @@ app.post('/profile', async (req, res) => {
                 Name: name,
                 Gender: (gen.rows[0].gender),
                 ImageData: dataURI,
-                First:userData.rows[0].fname,
+                First: userData.rows[0].fname,
                 Last: userData.rows[0].lname,
                 DOB: userData.rows[0].date_of_birth,
                 mail: userData.rows[0].email,
@@ -285,19 +285,19 @@ app.post("/dash", async (req, res) => {
     const amount = await db.query(`SELECT total_bal FROM user_data WHERE password = $1`, [req.session.pass]);
 
     const amounts = await db.query(`SELECT amount FROM ${req.session.table + 'Transaction'}`);
-    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table+'transaction'}`);
+    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table + 'transaction'}`);
 
-        const categoryArray = [];
-        const amountArray = [];
-        const benArray = [];
-        const dateArray = [];
+    const categoryArray = [];
+    const amountArray = [];
+    const benArray = [];
+    const dateArray = [];
 
-        TransactionData.rows.forEach(row => {
-            categoryArray.push(row.category);
-            amountArray.push(row.amount);
-            benArray.push(row.benpayname);
-            dateArray.push(row.transaction_date);
-        });
+    TransactionData.rows.forEach(row => {
+        categoryArray.push(row.category);
+        amountArray.push(row.amount);
+        benArray.push(row.benpayname);
+        dateArray.push(row.transaction_date);
+    });
     const arr = []
     if (categoryArray.length < 7) {
         for (let i = categoryArray.length - 1; i >= 0; i--) {
@@ -354,7 +354,7 @@ app.post("/dash", async (req, res) => {
     });
 
     const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-    if(!result.rows[0].image){
+    if (!result.rows[0].image) {
         res.render('dash.ejs', {
             Name: req.session.name,
             Gender: req.session.gender,
@@ -370,52 +370,52 @@ app.post("/dash", async (req, res) => {
             benf_name: benf,
             transac: trans,
             Amount: ru,
-            BenArray:benArray.reverse(),
-            DateArray:dateArray.reverse()
+            BenArray: benArray.reverse(),
+            DateArray: dateArray.reverse()
         });
-    }else{
-    const imageData = result.rows[0].image;
-    const buffer = Buffer.from(imageData, "binary");
-    const dataURI = buffer.toString();
+    } else {
+        const imageData = result.rows[0].image;
+        const buffer = Buffer.from(imageData, "binary");
+        const dataURI = buffer.toString();
 
-    res.render('dash.ejs', {
-        Name: req.session.name,
-        Gender: req.session.gender,
-        Bal: amount.rows[0].total_bal,
-        amountsArray: arr,
-        trans: tran,
-        amnt: am,
-        payees: pay,
-        card_details: card,
-        Bank: bnk,
-        Expiry_mon: ex_month,
-        Expiry_year: ex_year,
-        benf_name: benf,
-        transac: trans,
-        Amount: ru,
-        ImageData: dataURI,
-        BenArray: benArray,
-        DateArray:dateArray
-    });
-}
+        res.render('dash.ejs', {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            Bal: amount.rows[0].total_bal,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            ImageData: dataURI,
+            BenArray: benArray,
+            DateArray: dateArray
+        });
+    }
 });
 app.post("/track", async (req, res) => {
     const amount = await db.query(`SELECT total_bal FROM user_data WHERE password = $1`, [req.session.pass]);
 
-    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table+'transaction'}`);
+    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table + 'transaction'}`);
 
-        const categoryArray = [];
-        const amountArray = [];
-        const benArray = [];
-        const dateArray = [];
+    const categoryArray = [];
+    const amountArray = [];
+    const benArray = [];
+    const dateArray = [];
 
-        TransactionData.rows.forEach(row => {
-            categoryArray.push(row.category);
-            amountArray.push(row.amount);
-            benArray.push(row.benpayname);
-            dateArray.push(row.transaction_date);
-        });
-    
+    TransactionData.rows.forEach(row => {
+        categoryArray.push(row.category);
+        amountArray.push(row.amount);
+        benArray.push(row.benpayname);
+        dateArray.push(row.transaction_date);
+    });
+
     const arr = []
     if (categoryArray.length < 7) {
         for (let i = categoryArray.length - 1; i >= 0; i--) {
@@ -471,54 +471,54 @@ app.post("/track", async (req, res) => {
         ru.push(row.amount);
     });
     const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-            
-    if(!result.rows[0].image){
+
+    if (!result.rows[0].image) {
         res.render('track.ejs', {
             Name: req.session.name,
-        Gender: req.session.gender,
-        Bal: amount.rows[0].total_bal,
-        amountsArray: arr,
-        trans: tran,
-        amnt: am,
-        payees: pay,
-        card_details: card,
-        Bank: bnk,
-        Expiry_mon: ex_month,
-        Expiry_year: ex_year,
-        benf_name: benf,
-        transac: trans,
-        Amount: ru,
-        BenArray:benArray,
-        DateArray:dateArray,
+            Gender: req.session.gender,
+            Bal: amount.rows[0].total_bal,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            BenArray: benArray,
+            DateArray: dateArray,
         });
-    }else{
+    } else {
 
-    const imageData = result.rows[0].image;
-    const buffer = Buffer.from(imageData, "binary");
-    const dataURI = buffer.toString();
-    res.render('track.ejs', {
-        Name: req.session.name,
-        Gender: req.session.gender,
-        Bal: amount.rows[0].total_bal,
-        amountsArray: arr,
-        trans: tran,
-        amnt: am,
-        payees: pay,
-        card_details: card,
-        Bank: bnk,
-        Expiry_mon: ex_month,
-        Expiry_year: ex_year,
-        benf_name: benf,
-        transac: trans,
-        Amount: ru,
-        ImageData: dataURI,
-        BenArray:benArray.reverse(),
-        DateArray:dateArray.reverse(),
+        const imageData = result.rows[0].image;
+        const buffer = Buffer.from(imageData, "binary");
+        const dataURI = buffer.toString();
+        res.render('track.ejs', {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            Bal: amount.rows[0].total_bal,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            ImageData: dataURI,
+            BenArray: benArray.reverse(),
+            DateArray: dateArray.reverse(),
 
-    });
-}
+        });
+    }
 
-   
+
 });
 app.post("/add_income", async (req, res) => {
     try {
@@ -547,7 +547,7 @@ app.post("/add_income", async (req, res) => {
 
         const amount = await db.query(`SELECT total_bal FROM user_data WHERE password = $1`, [req.session.pass]);
 
-        const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table+'transaction'}`);
+        const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table + 'transaction'}`);
 
         const categoryArray = [];
         const amountArray = [];
@@ -560,7 +560,7 @@ app.post("/add_income", async (req, res) => {
             benArray.push(row.benpayname);
             dateArray.push(row.transaction_date);
         });
-    
+
 
         const arr = []
         if (categoryArray.length < 7) {
@@ -618,52 +618,52 @@ app.post("/add_income", async (req, res) => {
         });
 
         const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-            
-        if(!result.rows[0].image){
+
+        if (!result.rows[0].image) {
             res.render('track.ejs', {
                 Name: req.session.name,
-            Gender: req.session.gender,
-            Bal: amount.rows[0].total_bal,
-            amountsArray: arr,
-            trans: tran,
-            amnt: am,
-            payees: pay,
-            card_details: card,
-            Bank: bnk,
-            Expiry_mon: ex_month,
-            Expiry_year: ex_year,
-            benf_name: benf,
-            transac: trans,
-            Amount: ru,
-            BenArray:benArray,
-            DateArray:dateArray,
+                Gender: req.session.gender,
+                Bal: amount.rows[0].total_bal,
+                amountsArray: arr,
+                trans: tran,
+                amnt: am,
+                payees: pay,
+                card_details: card,
+                Bank: bnk,
+                Expiry_mon: ex_month,
+                Expiry_year: ex_year,
+                benf_name: benf,
+                transac: trans,
+                Amount: ru,
+                BenArray: benArray,
+                DateArray: dateArray,
             });
-        }else{
-    
-        const imageData = result.rows[0].image;
-        const buffer = Buffer.from(imageData, "binary");
-        const dataURI = buffer.toString();
-        res.render('track.ejs', {
-            Name: req.session.name,
-            Gender: req.session.gender,
-            Bal: amount.rows[0].total_bal,
-            amountsArray: arr,
-            trans: tran,
-            amnt: am,
-            payees: pay,
-            card_details: card,
-            Bank: bnk,
-            Expiry_mon: ex_month,
-            Expiry_year: ex_year,
-            benf_name: benf,
-            transac: trans,
-            Amount: ru,
-            ImageData: dataURI,
-            BenArray:benArray.reverse(),
-            DateArray:dateArray.reverse(),
-    
-        });
-    }
+        } else {
+
+            const imageData = result.rows[0].image;
+            const buffer = Buffer.from(imageData, "binary");
+            const dataURI = buffer.toString();
+            res.render('track.ejs', {
+                Name: req.session.name,
+                Gender: req.session.gender,
+                Bal: amount.rows[0].total_bal,
+                amountsArray: arr,
+                trans: tran,
+                amnt: am,
+                payees: pay,
+                card_details: card,
+                Bank: bnk,
+                Expiry_mon: ex_month,
+                Expiry_year: ex_year,
+                benf_name: benf,
+                transac: trans,
+                Amount: ru,
+                ImageData: dataURI,
+                BenArray: benArray.reverse(),
+                DateArray: dateArray.reverse(),
+
+            });
+        }
 
 
     } catch (error) {
@@ -687,134 +687,7 @@ app.post("/add_card", async (req, res) => {
         req.body.expiry_year
     ]);
 
-    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table+'transaction'}`);
-
-    const categoryArray = [];
-    const amountArray = [];
-    const benArray = [];
-    const dateArray = [];
-
-    TransactionData.rows.forEach(row => {
-        categoryArray.push(row.category);
-        amountArray.push(row.amount);
-        benArray.push(row.benpayname);
-        dateArray.push(row.transaction_date);
-    });
-
-
-    const arr = []
-        if (categoryArray.length < 7) {
-            for (let i = categoryArray.length - 1; i >= 0; i--) {
-                if (categoryArray[i].toLowerCase() === 'received') {
-                    arr.push(+amountArray[i]);
-                } else if (categoryArray[i].toLowerCase() === 'paid') {
-                    arr.push(-amountArray[i]);
-                }
-            }
-        } else {
-            for (let i = categoryArray.length - 1; i >= 0; i--) {
-                if (categoryArray[i].toLowerCase() === 'received') {
-                    arr.push(+amountArray[i]);
-                } else if (categoryArray[i].toLowerCase() === 'paid') {
-                    arr.push(-amountArray[i]);
-                }
-            }
-        }
-
-        const IncomeData = await db.query(`SELECT payee,transaction_date,amount FROM ${req.session.table + 'income'}`);
-        const pay = [];
-        const tran = [];
-        const am = [];
-
-        IncomeData.rows.forEach(row => {
-            pay.push(row.payee);
-            tran.push(row.transaction_date);
-            am.push(row.amount);
-        });
-
-        const CardData = await db.query(`select card_number, bank, expiry_month, expiry_year from ${req.session.table + 'cards'}`);
-        const card = [];
-        const bnk = [];
-        const ex_month = [];
-        const ex_year = [];
-
-        CardData.rows.forEach(row => {
-            card.push(row.card_number);
-            bnk.push(row.bank);
-            ex_month.push(row.expiry_month);
-            ex_year.push(row.expiry_year);
-
-        });
-
-        const billpayData = await db.query(`select ben_name,  transaction_date, amount from ${req.session.table + 'billpay'}`);
-        const benf = [];
-        const trans = [];
-        const ru = [];
-
-        billpayData.rows.forEach(row => {
-            benf.push(row.ben_name);
-            trans.push(row.transaction_date);
-            ru.push(row.amount);
-        });
-
-        const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-            
-        if(!result.rows[0].image){
-            res.render('track.ejs', {
-            Name: req.session.name,
-            Gender: req.session.gender,
-            amountsArray: arr,
-            trans: tran,
-            amnt: am,
-            payees: pay,
-            card_details: card,
-            Bank: bnk,
-            Expiry_mon: ex_month,
-            Expiry_year: ex_year,
-            benf_name: benf,
-            transac: trans,
-            Amount: ru,
-            BenArray:benArray,
-            DateArray:dateArray,
-            });
-        }else{
-    
-        const imageData = result.rows[0].image;
-        const buffer = Buffer.from(imageData, "binary");
-        const dataURI = buffer.toString();
-        res.render('track.ejs', {
-            Name: req.session.name,
-            Gender: req.session.gender,
-            amountsArray: arr,
-            trans: tran,
-            amnt: am,
-            payees: pay,
-            card_details: card,
-            Bank: bnk,
-            Expiry_mon: ex_month,
-            Expiry_year: ex_year,
-            benf_name: benf,
-            transac: trans,
-            Amount: ru,
-            ImageData: dataURI,
-            BenArray:benArray.reverse(),
-            DateArray:dateArray.reverse(),
-    
-        });
-    }
-});
-app.post("/add_bill", async (req, res) => {
-    await db.query(`
-            INSERT INTO ${req.session.table + 'billpay'} (ben_name, transaction_date, amount)
-            VALUES ($1, $2, $3)
-        `, [
-        req.body.beneficiary_name,
-        req.body.transaction_date,
-        req.body.amount,
-    ]);
-    const amount = await db.query(`SELECT total_bal FROM user_data WHERE password = $1`, [req.session.pass]);
-
-    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table+'transaction'}`);
+    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table + 'transaction'}`);
 
     const categoryArray = [];
     const amountArray = [];
@@ -885,52 +758,179 @@ app.post("/add_bill", async (req, res) => {
     });
 
     const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-            
-    if(!result.rows[0].image){
-        res.render('track.ejs', {
-        Name: req.session.name,
-        Gender: req.session.gender,
-        Bal: amount.rows[0].total_bal,
-        amountsArray: arr,
-        trans: tran,
-        amnt: am,
-        payees: pay,
-        card_details: card,
-        Bank: bnk,
-        Expiry_mon: ex_month,
-        Expiry_year: ex_year,
-        benf_name: benf,
-        transac: trans,
-        Amount: ru,
-        BenArray:benArray,
-        DateArray:dateArray,
-        });
-    }else{
 
-    const imageData = result.rows[0].image;
-    const buffer = Buffer.from(imageData, "binary");
-    const dataURI = buffer.toString();
-    res.render('track.ejs', {
-        Name: req.session.name,
-        Gender: req.session.gender,
-        Bal: amount.rows[0].total_bal,
-        amountsArray: arr,
-        trans: tran,
-        amnt: am,
-        payees: pay,
-        card_details: card,
-        Bank: bnk,
-        Expiry_mon: ex_month,
-        Expiry_year: ex_year,
-        benf_name: benf,
-        transac: trans,
-        Amount: ru,
-        ImageData: dataURI,
-        BenArray:benArray.reverse(),
-        DateArray:dateArray.reverse(),
+    if (!result.rows[0].image) {
+        res.render('track.ejs', {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            BenArray: benArray,
+            DateArray: dateArray,
+        });
+    } else {
+
+        const imageData = result.rows[0].image;
+        const buffer = Buffer.from(imageData, "binary");
+        const dataURI = buffer.toString();
+        res.render('track.ejs', {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            ImageData: dataURI,
+            BenArray: benArray.reverse(),
+            DateArray: dateArray.reverse(),
+
+        });
+    }
+});
+app.post("/add_bill", async (req, res) => {
+    await db.query(`
+            INSERT INTO ${req.session.table + 'billpay'} (ben_name, transaction_date, amount)
+            VALUES ($1, $2, $3)
+        `, [
+        req.body.beneficiary_name,
+        req.body.transaction_date,
+        req.body.amount,
+    ]);
+    const amount = await db.query(`SELECT total_bal FROM user_data WHERE password = $1`, [req.session.pass]);
+
+    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table + 'transaction'}`);
+
+    const categoryArray = [];
+    const amountArray = [];
+    const benArray = [];
+    const dateArray = [];
+
+    TransactionData.rows.forEach(row => {
+        categoryArray.push(row.category);
+        amountArray.push(row.amount);
+        benArray.push(row.benpayname);
+        dateArray.push(row.transaction_date);
+    });
+
+
+    const arr = []
+    if (categoryArray.length < 7) {
+        for (let i = categoryArray.length - 1; i >= 0; i--) {
+            if (categoryArray[i].toLowerCase() === 'received') {
+                arr.push(+amountArray[i]);
+            } else if (categoryArray[i].toLowerCase() === 'paid') {
+                arr.push(-amountArray[i]);
+            }
+        }
+    } else {
+        for (let i = categoryArray.length - 1; i >= 0; i--) {
+            if (categoryArray[i].toLowerCase() === 'received') {
+                arr.push(+amountArray[i]);
+            } else if (categoryArray[i].toLowerCase() === 'paid') {
+                arr.push(-amountArray[i]);
+            }
+        }
+    }
+
+    const IncomeData = await db.query(`SELECT payee,transaction_date,amount FROM ${req.session.table + 'income'}`);
+    const pay = [];
+    const tran = [];
+    const am = [];
+
+    IncomeData.rows.forEach(row => {
+        pay.push(row.payee);
+        tran.push(row.transaction_date);
+        am.push(row.amount);
+    });
+
+    const CardData = await db.query(`select card_number, bank, expiry_month, expiry_year from ${req.session.table + 'cards'}`);
+    const card = [];
+    const bnk = [];
+    const ex_month = [];
+    const ex_year = [];
+
+    CardData.rows.forEach(row => {
+        card.push(row.card_number);
+        bnk.push(row.bank);
+        ex_month.push(row.expiry_month);
+        ex_year.push(row.expiry_year);
 
     });
-}
+
+    const billpayData = await db.query(`select ben_name,  transaction_date, amount from ${req.session.table + 'billpay'}`);
+    const benf = [];
+    const trans = [];
+    const ru = [];
+
+    billpayData.rows.forEach(row => {
+        benf.push(row.ben_name);
+        trans.push(row.transaction_date);
+        ru.push(row.amount);
+    });
+
+    const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
+
+    if (!result.rows[0].image) {
+        res.render('track.ejs', {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            Bal: amount.rows[0].total_bal,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            BenArray: benArray,
+            DateArray: dateArray,
+        });
+    } else {
+
+        const imageData = result.rows[0].image;
+        const buffer = Buffer.from(imageData, "binary");
+        const dataURI = buffer.toString();
+        res.render('track.ejs', {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            Bal: amount.rows[0].total_bal,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            ImageData: dataURI,
+            BenArray: benArray.reverse(),
+            DateArray: dateArray.reverse(),
+
+        });
+    }
 });
 app.post("/add_transaction", async (req, res) => {
     try {
@@ -961,7 +961,7 @@ app.post("/add_transaction", async (req, res) => {
             dateArray.push(row.transaction_date);
         });
 
-        
+
         const arr = []
         if (categoryArray.length < 7) {
             for (let i = categoryArray.length - 1; i >= 0; i--) {
@@ -1025,6 +1025,56 @@ app.post("/add_transaction", async (req, res) => {
             trans.push(row.transaction_date);
             ru.push(row.amount);
         });
+
+        const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
+
+        if (!result.rows[0].image) {
+            res.render('track.ejs', {
+                Name: req.session.name,
+                Gender: req.session.gender,
+                Bal: amount.rows[0].total_bal,
+                amountsArray: arr,
+                trans: tran,
+                amnt: am,
+                payees: pay,
+                card_details: card,
+                Bank: bnk,
+                Expiry_mon: ex_month,
+                Expiry_year: ex_year,
+                benf_name: benf,
+                transac: trans,
+                Amount: ru,
+                BenArray: benArray,
+                DateArray: dateArray,
+            });
+        } else {
+
+            const imageData = result.rows[0].image;
+            const buffer = Buffer.from(imageData, "binary");
+            const dataURI = buffer.toString();
+            res.render('track.ejs', {
+                Name: req.session.name,
+                Gender: req.session.gender,
+                Bal: amount.rows[0].total_bal,
+                amountsArray: arr,
+                trans: tran,
+                amnt: am,
+                payees: pay,
+                card_details: card,
+                Bank: bnk,
+                Expiry_mon: ex_month,
+                Expiry_year: ex_year,
+                benf_name: benf,
+                transac: trans,
+                Amount: ru,
+                ImageData: dataURI,
+                BenArray: benArray.reverse(),
+                DateArray: dateArray.reverse(),
+
+            });
+        }
+    }
+    catch (err) {
         res.render('track.ejs', {
             Name: req.session.name,
             Gender: req.session.gender,
@@ -1040,22 +1090,20 @@ app.post("/add_transaction", async (req, res) => {
             benf_name: benf,
             transac: trans,
             Amount: ru,
-            BenArray:benArray.reverse(),
-            DateArray:dateArray.reverse(),
+            BenArray: benArray.reverse(),
+            DateArray: dateArray.reverse(),
         });
-    } catch (error) {
-        console.error("Error:", error);
-        res.status(500).send("Internal Server Error");
     }
-});
+}
+);
 
 app.post('/edit', async (req, res) => {
 
     console.log(req.body);
-    if(req.session.pass===req.body.ver_password){
-        await db.query("update user_data set fname = $1 , lname = $2, date_of_birth=$3,email=$4",[req.body.fname,req.body.lname,req.body.DOB,req.body.mail]);
+    if (req.session.pass === req.body.ver_password) {
+        await db.query("update user_data set fname = $1 , lname = $2, date_of_birth=$3,email=$4", [req.body.fname, req.body.lname, req.body.DOB, req.body.mail]);
     }
-    else{
+    else {
         alert("Please Enter correct password");
     }
     const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
@@ -1064,7 +1112,7 @@ app.post('/edit', async (req, res) => {
         res.render('profile.ejs', {
             Name: req.session.name,
             Gender: req.session.gender,
-            First:userData.rows[0].fname,
+            First: userData.rows[0].fname,
             Last: userData.rows[0].lname,
             DOB: userData.rows[0].date_of_birth,
             mail: userData.rows[0].email,
@@ -1078,7 +1126,7 @@ app.post('/edit', async (req, res) => {
             Name: req.session.name,
             Gender: (gen.rows[0].gender),
             ImageData: dataURI,
-            First:userData.rows[0].fname,
+            First: userData.rows[0].fname,
             Last: userData.rows[0].lname,
             DOB: userData.rows[0].date_of_birth,
             mail: userData.rows[0].email,
@@ -1093,31 +1141,31 @@ app.post('/upload', upload.single('profile_image'), async (req, res) => {
         const { originalname, mimetype, buffer } = req.file;
         await db.query('update user_data set  image = $1 where password= $2', [req.file.filename, req.session.pass]);
         const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-    const userData = await db.query("select fname, lname, date_of_birth,email from user_data where password=$1", [req.session.pass]);
-    if (!result.rows[0].image) {
-        res.render('profile.ejs', {
-            Name: req.session.name,
-            Gender: req.session.gender,
-            First:userData.rows[0].fname,
-            Last: userData.rows[0].lname,
-            DOB: userData.rows[0].date_of_birth,
-            mail: userData.rows[0].email,
-        });
-    } else {
-        console.log(userData.rows[0].fname)
-        const imageData = result.rows[0].image;
-        const buffer = Buffer.from(imageData, "binary");
-        const dataURI = buffer.toString();
-        res.render("profile.ejs", {
-            Name: req.session.name,
-            Gender: req.session.gender,
-            ImageData: dataURI,
-            First:userData.rows[0].fname,
-            Last: userData.rows[0].lname,
-            DOB: userData.rows[0].date_of_birth,
-            mail: userData.rows[0].email,
-        });
-    }
+        const userData = await db.query("select fname, lname, date_of_birth,email from user_data where password=$1", [req.session.pass]);
+        if (!result.rows[0].image) {
+            res.render('profile.ejs', {
+                Name: req.session.name,
+                Gender: req.session.gender,
+                First: userData.rows[0].fname,
+                Last: userData.rows[0].lname,
+                DOB: userData.rows[0].date_of_birth,
+                mail: userData.rows[0].email,
+            });
+        } else {
+            console.log(userData.rows[0].fname)
+            const imageData = result.rows[0].image;
+            const buffer = Buffer.from(imageData, "binary");
+            const dataURI = buffer.toString();
+            res.render("profile.ejs", {
+                Name: req.session.name,
+                Gender: req.session.gender,
+                ImageData: dataURI,
+                First: userData.rows[0].fname,
+                Last: userData.rows[0].lname,
+                DOB: userData.rows[0].date_of_birth,
+                mail: userData.rows[0].email,
+            });
+        }
     } catch (error) {
         console.error('Error uploading image:', error);
         res.status(500).send('Error uploading image.');
@@ -1144,7 +1192,7 @@ app.get('/profile', async (req, res) => {
             res.render('profile.ejs', {
                 Name: req.session.name,
                 Gender: req.session.gender,
-                First:userData.rows[0].fname,
+                First: userData.rows[0].fname,
                 Last: userData.rows[0].lname,
                 DOB: userData.rows[0].date_of_birth,
                 mail: userData.rows[0].email,
@@ -1158,7 +1206,7 @@ app.get('/profile', async (req, res) => {
                 Name: name,
                 Gender: (gen.rows[0].gender),
                 ImageData: dataURI,
-                First:userData.rows[0].fname,
+                First: userData.rows[0].fname,
                 Last: userData.rows[0].lname,
                 DOB: userData.rows[0].date_of_birth,
                 mail: userData.rows[0].email,
@@ -1172,19 +1220,19 @@ app.get("/dash", async (req, res) => {
     const amount = await db.query(`SELECT total_bal FROM user_data WHERE password = $1`, [req.session.pass]);
 
     const amounts = await db.query(`SELECT amount FROM ${req.session.table + 'Transaction'}`);
-    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table+'transaction'}`);
+    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table + 'transaction'}`);
 
-        const categoryArray = [];
-        const amountArray = [];
-        const benArray = [];
-        const dateArray = [];
+    const categoryArray = [];
+    const amountArray = [];
+    const benArray = [];
+    const dateArray = [];
 
-        TransactionData.rows.forEach(row => {
-            categoryArray.push(row.category);
-            amountArray.push(row.amount);
-            benArray.push(row.benpayname);
-            dateArray.push(row.transaction_date);
-        });
+    TransactionData.rows.forEach(row => {
+        categoryArray.push(row.category);
+        amountArray.push(row.amount);
+        benArray.push(row.benpayname);
+        dateArray.push(row.transaction_date);
+    });
     const arr = []
     if (categoryArray.length < 7) {
         for (let i = categoryArray.length - 1; i >= 0; i--) {
@@ -1241,7 +1289,7 @@ app.get("/dash", async (req, res) => {
     });
 
     const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-    if(!result.rows[0].image){
+    if (!result.rows[0].image) {
         res.render('dash.ejs', {
             Name: req.session.name,
             Gender: req.session.gender,
@@ -1257,53 +1305,53 @@ app.get("/dash", async (req, res) => {
             benf_name: benf,
             transac: trans,
             Amount: ru,
-            BenArray:benArray.reverse(),
-            DateArray:dateArray.reverse()
+            BenArray: benArray.reverse(),
+            DateArray: dateArray.reverse()
         });
-    }else{
-    const imageData = result.rows[0].image;
-    const buffer = Buffer.from(imageData, "binary");
-    const dataURI = buffer.toString();
+    } else {
+        const imageData = result.rows[0].image;
+        const buffer = Buffer.from(imageData, "binary");
+        const dataURI = buffer.toString();
 
-    res.render('dash.ejs', {
-        Name: req.session.name,
-        Gender: req.session.gender,
-        Bal: amount.rows[0].total_bal,
-        amountsArray: arr,
-        trans: tran,
-        amnt: am,
-        payees: pay,
-        card_details: card,
-        Bank: bnk,
-        Expiry_mon: ex_month,
-        Expiry_year: ex_year,
-        benf_name: benf,
-        transac: trans,
-        Amount: ru,
-        ImageData: dataURI,
-        BenArray: benArray,
-        DateArray:dateArray
-    });
-}
+        res.render('dash.ejs', {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            Bal: amount.rows[0].total_bal,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            ImageData: dataURI,
+            BenArray: benArray,
+            DateArray: dateArray
+        });
+    }
 });
 
 app.get("/track", async (req, res) => {
     const amount = await db.query(`SELECT total_bal FROM user_data WHERE password = $1`, [req.session.pass]);
 
-    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table+'transaction'}`);
+    const TransactionData = await db.query(`SELECT amount,benpayname,transaction_date,category FROM ${req.session.table + 'transaction'}`);
 
-        const categoryArray = [];
-        const amountArray = [];
-        const benArray = [];
-        const dateArray = [];
+    const categoryArray = [];
+    const amountArray = [];
+    const benArray = [];
+    const dateArray = [];
 
-        TransactionData.rows.forEach(row => {
-            categoryArray.push(row.category);
-            amountArray.push(row.amount);
-            benArray.push(row.benpayname);
-            dateArray.push(row.transaction_date);
-        });
-    
+    TransactionData.rows.forEach(row => {
+        categoryArray.push(row.category);
+        amountArray.push(row.amount);
+        benArray.push(row.benpayname);
+        dateArray.push(row.transaction_date);
+    });
+
     const arr = []
     if (categoryArray.length < 7) {
         for (let i = categoryArray.length - 1; i >= 0; i--) {
@@ -1359,95 +1407,95 @@ app.get("/track", async (req, res) => {
         ru.push(row.amount);
     });
     const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-            
-    if(!result.rows[0].image){
+
+    if (!result.rows[0].image) {
         res.render('track.ejs', {
             Name: req.session.name,
-        Gender: req.session.gender,
-        Bal: amount.rows[0].total_bal,
-        amountsArray: arr,
-        trans: tran,
-        amnt: am,
-        payees: pay,
-        card_details: card,
-        Bank: bnk,
-        Expiry_mon: ex_month,
-        Expiry_year: ex_year,
-        benf_name: benf,
-        transac: trans,
-        Amount: ru,
-        BenArray:benArray,
-        DateArray:dateArray,
+            Gender: req.session.gender,
+            Bal: amount.rows[0].total_bal,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            BenArray: benArray,
+            DateArray: dateArray,
         });
-    }else{
+    } else {
 
-    const imageData = result.rows[0].image;
-    const buffer = Buffer.from(imageData, "binary");
-    const dataURI = buffer.toString();
-    res.render('track.ejs', {
-        Name: req.session.name,
-        Gender: req.session.gender,
-        Bal: amount.rows[0].total_bal,
-        amountsArray: arr,
-        trans: tran,
-        amnt: am,
-        payees: pay,
-        card_details: card,
-        Bank: bnk,
-        Expiry_mon: ex_month,
-        Expiry_year: ex_year,
-        benf_name: benf,
-        transac: trans,
-        Amount: ru,
-        ImageData: dataURI,
-        BenArray:benArray.reverse(),
-        DateArray:dateArray.reverse(),
+        const imageData = result.rows[0].image;
+        const buffer = Buffer.from(imageData, "binary");
+        const dataURI = buffer.toString();
+        res.render('track.ejs', {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            Bal: amount.rows[0].total_bal,
+            amountsArray: arr,
+            trans: tran,
+            amnt: am,
+            payees: pay,
+            card_details: card,
+            Bank: bnk,
+            Expiry_mon: ex_month,
+            Expiry_year: ex_year,
+            benf_name: benf,
+            transac: trans,
+            Amount: ru,
+            ImageData: dataURI,
+            BenArray: benArray.reverse(),
+            DateArray: dateArray.reverse(),
 
-    });
-}
+        });
+    }
 
-   
+
 });
 
 io.on('connection', (socket) => {
     socket.on("user-message", (message) => {
-        io.emit("message",message);
+        io.emit("message", message);
     })
 });
 
-app.get('/chat', async (req,res) => {
+app.get('/chat', async (req, res) => {
 
     const result = await db.query('SELECT image FROM user_data WHERE password = $1', [req.session.pass]);
-        const userData = await db.query("select fname, lname, date_of_birth,email from user_data where password=$1", [req.session.pass]);
-        if (!result.rows[0].image) {
-            // No image found for the user
-            res.render('chat.ejs', {
-                Name: req.session.name,
-                Gender: req.session.gender,
-                First:userData.rows[0].fname,
-                Last: userData.rows[0].lname,
-                DOB: userData.rows[0].date_of_birth,
-                mail: userData.rows[0].email,
-            });
-        } else {
-            const imageData = result.rows[0].image;
-            const buffer = Buffer.from(imageData, "binary");
-            const dataURI = buffer.toString();
-            res.render("chat", {
-                Name: req.session.name,
-                Gender: req.session.gender,
-                ImageData: dataURI,
-                First:userData.rows[0].fname,
-                Last: userData.rows[0].lname,
-                DOB: userData.rows[0].date_of_birth,
-                mail: userData.rows[0].email,
-            });
-        }
+    const userData = await db.query("select fname, lname, date_of_birth,email from user_data where password=$1", [req.session.pass]);
+    if (!result.rows[0].image) {
+        // No image found for the user
+        res.render('chat.ejs', {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            First: userData.rows[0].fname,
+            Last: userData.rows[0].lname,
+            DOB: userData.rows[0].date_of_birth,
+            mail: userData.rows[0].email,
+        });
+    } else {
+        const imageData = result.rows[0].image;
+        const buffer = Buffer.from(imageData, "binary");
+        const dataURI = buffer.toString();
+        res.render("chat", {
+            Name: req.session.name,
+            Gender: req.session.gender,
+            ImageData: dataURI,
+            First: userData.rows[0].fname,
+            Last: userData.rows[0].lname,
+            DOB: userData.rows[0].date_of_birth,
+            mail: userData.rows[0].email,
+        });
+    }
 });
 app.get('/', (req, res) => {
     res.render('index.ejs');
 });
 
-server.listen(process.env.PORT,()=>{
+server.listen(process.env.PORT, () => {
     console.log("chat server Server started on 3000");
 });
